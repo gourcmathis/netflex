@@ -2,7 +2,7 @@
 
 ### Architecture de Microservices
 
-Groupe: Gourc Mathis, Mabicka Guy, et Matsepa Dmytro. 
+Groupe: Gourc Mathis, Mabicka Guy et Matsepa Dmytro. 
 
 # Repositories
 [Front (VueJS)](https://github.com/gourcmathis/nx-vuejs)
