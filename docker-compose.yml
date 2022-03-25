@@ -2,15 +2,15 @@ version: '3.3'
 
 services:
 
-  # frontend:
-  #   container_name: frontend
-  #   build: ./nx-vuejs/nx-frontend
-  #   volumes:
-  #     - './nx-vuejs/nx-frontend:/app'
-  #     - '/app/node_modules'
+  frontend:
+    container_name: frontend
+    build: ./nx-vuejs/nx-frontend
+    volumes:
+      - './nx-vuejs/nx-frontend:/app'
+      - '/app/node_modules'
     
-  #   ports:
-  #     - 8080:8080
+    ports:
+      - 8080:8080
     
   mongo:
     container_name: netflexdb
