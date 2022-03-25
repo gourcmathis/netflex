@@ -1,17 +1,24 @@
 version: '3.3'
 
 services:
+  backend:
+    container_name: crud
+    build: ./nx-crud
+    ports:
+      - 8000:8000
+    volumes:
+      - ./nx-crud:/app
+    command: uvicorn src.main:app --reload --host 0.0.0.0 --port 8000
 
   frontend:
     container_name: frontend
     build: ./nx-vuejs/nx-frontend
     volumes:
-      - './nx-vuejs/nx-frontend:/app'
-      - '/app/node_modules'
-    
+      - ./nx-vuejs/nx-frontend:/app
+      - /app/node_modules  
     ports:
       - 8080:8080
-    
+
   mongo:
     container_name: database
     image: mongo:latest
