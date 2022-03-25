@@ -36,9 +36,9 @@ services:
     container_name: netflexdb
     image: mongo:latest
     environment:
-      - MONGO_INITDB_DATABASE=netflexdb
-      - MONGO_INITDB_ROOT_USERNAME=admin
-      - MONGO_INITDB_ROOT_PASSWORD=admin
+      - MONGO_INITDB_DATABASE=${MONGODB_NAME}
+      - MONGO_INITDB_ROOT_USERNAME=${MONGODB_USER}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGODB_PASSWORD}
     volumes:
       - ./nx-mongodb/backup:/backup
     ports:
