@@ -1,7 +1,7 @@
 version: '3.3'
 
 services:
-  backend:
+  backend_crud:
     container_name: crud
     build: ./nx-crud
     ports:
@@ -9,6 +9,15 @@ services:
     volumes:
       - ./nx-crud:/app
     command: uvicorn src.main:app --reload --host 0.0.0.0 --port 8000
+
+  backend_imdb:
+    container_name: imdb
+    build: ./nx-api-imdb
+    ports:
+      - 5000:5000
+    volumes:
+      - ./nx-api-imdb:/app
+    command: uvicorn src.main:app --reload --host 0.0.0.0 --port 5000
 
   frontend:
     container_name: frontend
