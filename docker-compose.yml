@@ -20,13 +20,13 @@ services:
       - 8080:8080
 
   mongo:
-    container_name: database
+    container_name: netflexdb
     image: mongo:latest
     environment:
       - MONGO_INITDB_DATABASE=netflexdb
       - MONGO_INITDB_ROOT_USERNAME=admin
       - MONGO_INITDB_ROOT_PASSWORD=admin
     volumes:
-      - ./nx-mongodb/db:/data/db
+      - ./nx-mongodb/backup:/backup
     ports:
       - "27017:27017"
