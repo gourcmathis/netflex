@@ -1,6 +1,21 @@
 version: '3.3'
 
 services:
+
+  mongo:
+    container_name: netflexdb
+    image: mongo:latest
+    env_file:
+      - .env
+    environment:
+      - MONGO_INITDB_DATABASE=netflexdb
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=admin
+    volumes:
+      - ./nx-mongodb/backup:/data/db
+    ports:
+      - "27017:27017"
+
   backend_crud:
     container_name: crud
     build: ./nx-crud
@@ -8,6 +23,8 @@ services:
       - .env
     ports:
       - 8000:8000
+    depends_on:
+      - mongo
     volumes:
       - ./nx-crud:/app
     command: uvicorn src.main:app --reload --host 0.0.0.0 --port 8000
@@ -19,9 +36,12 @@ services:
       - .env
     ports:
       - 5000:5000
+    depends_on:
+      - mongo
     volumes:
       - ./nx-api-imdb:/app
     command: uvicorn src.main:app --reload --host 0.0.0.0 --port 5000
+
 
   frontend:
     container_name: frontend
@@ -31,15 +51,3 @@ services:
       - /app/node_modules  
     ports:
       - 8080:8080
-
-  mongo:
-    container_name: netflexdb
-    image: mongo:latest
-    environment:
-      - MONGO_INITDB_DATABASE=${MONGODB_NAME}
-      - MONGO_INITDB_ROOT_USERNAME=${MONGODB_USER}
-      - MONGO_INITDB_ROOT_PASSWORD=${MONGODB_PASSWORD}
-    volumes:
-      - ./nx-mongodb/backup:/backup
-    ports:
-      - "27017:27017"
