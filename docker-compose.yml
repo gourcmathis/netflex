@@ -23,3 +23,11 @@ services:
       - ./nx-mongodb/backup:/backup
     ports:
       - "27017:27017"
+
+  imdb-api:
+    container_name: imdb
+    build: ./nx-api-imdb/
+    volumes:
+      - ./nx-api-imdb/:/app
+    ports:
+      - 5000:5000
