@@ -2,32 +2,47 @@ version: '3.3'
 
 services:
 
-  frontend:
-    container_name: frontend
-    build: ./nx-vuejs/nx-frontend
-    volumes:
-      - './nx-vuejs/nx-frontend:/app'
-      - '/app/node_modules'
-    
-    ports:
-      - 8080:8080
-    
   mongo:
     container_name: netflexdb
     image: mongo:latest
     environment:
-      - MONGO_INITDB_DATABASE=netflexdb
-      - MONGO_INITDB_ROOT_USERNAME=admin
-      - MONGO_INITDB_ROOT_PASSWORD=admin
+      - MONGO_INITDB_DATABASE=${MONGODB_NAME}
+      - MONGO_INITDB_ROOT_USERNAME=${MONGODB_USER}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGODB_PASSWORD}
     volumes:
       - ./nx-mongodb/backup:/backup
     ports:
       - "27017:27017"
 
-  imdb-api:
-    container_name: imdb
-    build: ./nx-api-imdb/
+
+  backend_crud:
+    container_name: crud
+    build: ./nx-crud
+    env_file:
+      - .env
+    ports:
+      - 8000:8000
     volumes:
-      - ./nx-api-imdb/:/app
+      - ./nx-crud:/app
+    command: uvicorn src.main:app --reload --host 0.0.0.0 --port 8000
+
+
+  backend_imdb:
+    container_name: imdb
+    build: ./nx-api-imdb
+    env_file:
+      - .env
     ports:
       - 5000:5000
+    volumes:
+      - ./nx-api-imdb:/app
+
+
+  frontend:
+    container_name: frontend
+    build: ./nx-vuejs/nx-frontend
+    volumes:
+      - ./nx-vuejs/nx-frontend:/app
+      - /app/node_modules  
+    ports:
+      - 8080:8080
