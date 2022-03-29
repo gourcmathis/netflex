@@ -10,9 +10,9 @@ services:
       - MONGO_INITDB_ROOT_USERNAME=${MONGODB_USER}
       - MONGO_INITDB_ROOT_PASSWORD=${MONGODB_PASSWORD}
     volumes:
-      - ./nx-mongodb/backup:/backup
+      - ./nx-mongodb/backup:/data/bd
     ports:
-      - "27017:27017"
+      - 27017:27017
 
 
   backend_crud:
