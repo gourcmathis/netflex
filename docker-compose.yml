@@ -5,14 +5,16 @@ services:
   mongo:
     container_name: netflexdb
     image: mongo:latest
+    build: ./nx-mongodb/
     environment:
       - MONGO_INITDB_DATABASE=${MONGODB_NAME}
       - MONGO_INITDB_ROOT_USERNAME=${MONGODB_USER}
       - MONGO_INITDB_ROOT_PASSWORD=${MONGODB_PASSWORD}
     volumes:
-      - ./nx-mongodb/backup:/data/bd
+      - ./nx-mongodb/backup:/backup
     ports:
       - 27017:27017
+    restart: always
 
 
   backend_crud:
@@ -46,6 +48,6 @@ services:
     build: ./nx-vuejs/nx-frontend
     volumes:
       - ./nx-vuejs/nx-frontend:/app
-      - /app/node_modules  
+      - /app/node_modules
     ports:
       - 8080:8080
