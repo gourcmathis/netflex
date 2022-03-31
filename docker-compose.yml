@@ -10,9 +10,10 @@ services:
       - MONGO_INITDB_ROOT_USERNAME=${MONGODB_USER}
       - MONGO_INITDB_ROOT_PASSWORD=${MONGODB_PASSWORD}
     volumes:
-      - ./nx-mongodb/backup:/data/bd
+      - ./nx-mongodb/backup:/backup
     ports:
       - 27017:27017
+    restart: always
 
 
   backend_crud:
@@ -28,24 +29,23 @@ services:
       - ./nx-crud:/app
     command: uvicorn src.main:app --reload --host 0.0.0.0 --port 8000
 
-
-  backend_imdb:
-    container_name: imdb
-    build: ./nx-api-imdb
-    env_file:
-      - .env
-    ports:
-      - 5000:5000
-    depends_on:
-      - mongo
-    volumes:
-      - ./nx-api-imdb:/app
+  # backend_imdb:
+  #   container_name: imdb
+  #   build: ./nx-api-imdb
+  #   env_file:
+  #     - .env
+  #   ports:
+  #     - 5000:5000
+  #   depends_on:
+  #     - mongo
+  #   volumes:
+  #     - ./nx-api-imdb:/app
 
   frontend:
     container_name: frontend
     build: ./nx-vuejs/nx-frontend
     volumes:
       - ./nx-vuejs/nx-frontend:/app
-      - /app/node_modules  
+      - /nx-vuejs/nx-frontend/node_modules
     ports:
       - 8080:8080
