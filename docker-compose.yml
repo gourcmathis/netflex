@@ -5,6 +5,7 @@ services:
   mongo:
     container_name: netflexdb
     image: mongo:latest
+    build: ./nx-mongodb/
     environment:
       - MONGO_INITDB_DATABASE=${MONGODB_NAME}
       - MONGO_INITDB_ROOT_USERNAME=${MONGODB_USER}
@@ -25,21 +26,22 @@ services:
       - 8000:8000
     depends_on:
       - mongo
+      - imdb
     volumes:
       - ./nx-crud:/app
     command: uvicorn src.main:app --reload --host 0.0.0.0 --port 8000
 
-  # backend_imdb:
-  #   container_name: imdb
-  #   build: ./nx-api-imdb
-  #   env_file:
-  #     - .env
-  #   ports:
-  #     - 5000:5000
-  #   depends_on:
-  #     - mongo
-  #   volumes:
-  #     - ./nx-api-imdb:/app
+  backend_imdb:
+    container_name: imdb
+    build: ./nx-api-imdb
+    env_file:
+      - .env
+    ports:
+      - 5000:5000
+    depends_on:
+      - mongo
+    volumes:
+      - ./nx-api-imdb:/app
 
   frontend:
     container_name: frontend
