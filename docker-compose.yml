@@ -31,7 +31,6 @@ services:
       - ./nx-crud:/app
     command: uvicorn src.main:app --reload --host 0.0.0.0 --port 8000
 
-
   backend_imdb:
     container_name: imdb
     build: ./nx-api-imdb
@@ -50,6 +49,6 @@ services:
     build: ./nx-vuejs/nx-frontend
     volumes:
       - ./nx-vuejs/nx-frontend:/app
-      - /app/node_modules
+      - /nx-vuejs/nx-frontend/node_modules
     ports:
       - 8080:8080
