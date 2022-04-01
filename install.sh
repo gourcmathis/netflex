@@ -12,7 +12,6 @@ clone_if_not_exists() {
         git clone git@github.com:$owner/$1.git
     else
         echo "Folder already exists. Aborted."
-        exit
     fi
 }
 
