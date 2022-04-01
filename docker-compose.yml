@@ -26,7 +26,7 @@ services:
       - 8000:8000
     depends_on:
       - mongo
-      - imdb
+      - backend_imdb
     volumes:
       - ./nx-crud:/app
     command: uvicorn src.main:app --reload --host 0.0.0.0 --port 8000
@@ -43,6 +43,7 @@ services:
       - mongo
     volumes:
       - ./nx-api-imdb:/app
+    command: uvicorn src.main:app --host 0.0.0.0 --port 5000 --reload
 
   frontend:
     container_name: frontend
