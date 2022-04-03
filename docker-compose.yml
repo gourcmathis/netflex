@@ -49,6 +49,6 @@ services:
     build: ./nx-vuejs/nx-frontend
     volumes:
       - ./nx-vuejs/nx-frontend:/app
-      - /nx-vuejs/nx-frontend/node_modules
+      - /app/node_modules
     ports:
       - 8080:8080
