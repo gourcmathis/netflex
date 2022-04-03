@@ -24,7 +24,7 @@ Before running the application, you have to create a .env file in this directory
 To run the application, just run:
     
     ./install.sh
-    docker-compose up -d
+    docker-compose up
 
 The website will be available on *localhost:8080*
 
