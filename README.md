@@ -1,4 +1,5 @@
 # Netflex
+This project is a web application that allows you to search movies, and find what you should watch next with your friends based on your group's preferences. The application is built with FastAPI, VueJS and MongoDB.
 
 ## Architecture de Microservices
 
@@ -24,11 +25,12 @@ Before running the application, you have to create a .env file in this directory
 To run the application, just run:
     
     ./install.sh
-    docker-compose up
+    docker-compose up --build
 
-The website will be available on *localhost:8080*
+The website will be available on *localhost:8080*. We recommend to build and run the application on Docker Desktop (Windows version).
 
 If you want to test FastAPI requests, you can visit *localhost:8000*
+
 
 
 ## Repositories
