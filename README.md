@@ -5,6 +5,15 @@ This project is a web application that allows you to search movies, and find wha
 
 Groupe: Gourc Mathis, Mabicka Guy et Matsepa Dmytro.
 
+## Dependent repositories
+### Front-end
+* [VueJS](https://github.com/gourcmathis/nx-vuejs)
+
+### Back-end
+* [Database (MongoDB)](https://github.com/gourcmathis/nx-mongodb)
+* [API - CRUD](https://github.com/gourcmathis/nx-crud)
+* [API - IMDb](https://github.com/gourcmathis/nx-api-imdb)
+
 ## Environment variables
 Before running the application, you have to create a .env file in this directory with the following lines:
 
@@ -30,14 +39,3 @@ To run the application, just run:
 The website will be available on *localhost:8080*. We recommend to build and run the application on Docker Desktop (Windows version).
 
 If you want to test FastAPI requests, you can visit *localhost:8000*
-
-
-
-## Repositories
-[Front (VueJS)](https://github.com/gourcmathis/nx-vuejs)
-
-[Database (MongoDB)](https://github.com/gourcmathis/nx-mongodb)
-
-[API - CRUD](https://github.com/gourcmathis/nx-crud)
-
-[API - IMDb](https://github.com/gourcmathis/nx-api-imdb)
